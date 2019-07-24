@@ -3,7 +3,8 @@
 	"version": "1.0.0",
 	"description": "Acceptance-tests for tdd-demo",
 	"dependencies": {
-		"apickli": "latest"
+		"apickli": "latest",
+		"cucumber": "^5.1.0"
 	},
 	"scripts": {
 		"init": "npm install",
