@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: tdd-demo-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+spec:
+  rules:
+  - host: tdd-demo.apis.local
+    http:
+      paths:
+        - path: /
+          backend:
+            serviceName: tdd-demo-svc
+            servicePort: 8080
