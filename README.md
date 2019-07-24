@@ -46,3 +46,7 @@ echo "$(minikube ip) tdd-demo.apis.local" | sudo tee -a /etc/hosts
 curl tdd-demo.apis.local/actuator/health
 curl tdd-demo.apis.local/tdd-demo/characters
 ```
+
+## acceptance-tests
+
+See [acceptance-tests/](acceptance-tests/README.md)

@@ -1,0 +1,13 @@
+{
+	"name": "tdd-demo-acceptance-test",
+	"version": "1.0.0",
+	"description": "Acceptance-tests for tdd-demo",
+	"dependencies": {
+		"apickli": "latest"
+	},
+	"scripts": {
+		"init": "npm install",
+		"test": "cucumber-js",
+		"report": "node generate-report.js"
+	}
+}
