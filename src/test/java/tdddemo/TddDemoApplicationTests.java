@@ -23,8 +23,14 @@ public class TddDemoApplicationTests {
     private MockMvc mockMvc;
 
     @Test
-    public void shouldSaveCharacterWithName() {
-        // TODO implement
+    public void shouldSaveCharacterWithName() throws Exception {
+        // Given I set body to {"name":"C1", "leadership":1, "endurance":4}
+        // When I POST to /characters
+        MockHttpServletRequestBuilder request = post("http://localhost/characters").contentType(MediaType.APPLICATION_JSON)
+                .content("{\"name\":\"C1\", \"leadership\":1, \"endurance\":4}");
+
+        // Then response code should be 201
+        mockMvc.perform(request).andDo(print()).andExpect(status().isCreated());
     }
 
     @Test
