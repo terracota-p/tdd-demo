@@ -1,5 +1,7 @@
 package tdddemo.controller;
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,5 +45,14 @@ public class CharacterController {
         CharacterDto character = characterService.getByName(name);
         
         return ResponseEntity.status(HttpStatus.OK).body(character);
+    }
+
+    @GetMapping("/characters")
+    public ResponseEntity<Collection<CharacterDto>> getCharacters() {
+        log.info("getCharacters");
+        
+        Collection<CharacterDto> characters = characterService.listAll();
+        
+        return ResponseEntity.status(HttpStatus.OK).body(characters);
     }
 }

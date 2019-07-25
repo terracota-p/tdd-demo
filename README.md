@@ -38,5 +38,6 @@ Use k8s' docker daemon so that the image built is accessible from k8s (needs to 
 ```
 echo "$(minikube ip) tdd-demo.apis.local" | sudo tee -a /etc/hosts
 curl tdd-demo.apis.local/actuator/health
+curl -X POST http://tdd-demo.apis.local/characters -H 'Content-Type: application/json' -d '{"name":"Jarl", "leadership":1, "endurance":4}'
 curl tdd-demo.apis.local/characters
 ```

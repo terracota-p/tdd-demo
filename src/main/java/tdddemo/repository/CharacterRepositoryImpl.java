@@ -1,6 +1,8 @@
 package tdddemo.repository;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.validation.Valid;
@@ -22,5 +24,10 @@ public class CharacterRepositoryImpl implements CharacterRepository {
     @Override
     public CharacterDto get(String name) {
         return charactersByName.get(name);
+    }
+
+    @Override
+    public Collection<CharacterDto> listAll() {
+        return charactersByName.values();
     }
 }

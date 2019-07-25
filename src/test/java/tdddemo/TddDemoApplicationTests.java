@@ -63,4 +63,18 @@ public class TddDemoApplicationTests {
             .andExpect(content().json(CHARACTER1_JSON));
     }
 
+    @Test
+    public void shouldListSavedCharacters() throws Exception {
+        // Given I saved character
+        shouldSaveCharacterWithName();
+        
+        // When I GET /characters
+        MockHttpServletRequestBuilder request = get("http://localhost/characters");
+        
+        // Then response code should be 200
+        mockMvc.perform(request).andDo(print())
+            .andExpect(status().isOk())
+        // And response body path $ should be [{"name":"<name>", "leadership":<leadership>, "endurance":<endurance>}]
+            .andExpect(content().json("[" + CHARACTER1_JSON + "]"));
+    }
 }

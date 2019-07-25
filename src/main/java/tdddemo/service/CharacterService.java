@@ -1,5 +1,7 @@
 package tdddemo.service;
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,10 @@ public class CharacterService {
 
     public CharacterDto getByName(String name) {
         return characterRepository.get(name);
+    }
+
+    public Collection<CharacterDto> listAll() {
+        return characterRepository.listAll();
     }
 
 }
