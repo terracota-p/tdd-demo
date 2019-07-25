@@ -1,25 +1,30 @@
 package tdddemo.service;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import tdddemo.dto.CharacterDto;
+import tdddemo.repository.CharacterRepository;
 
 @Service
 public class CharacterService {
 
-    private Map<String, CharacterDto> charactersRepository = new HashMap<>();
+    private final CharacterRepository characterRepository;
+    
+    @Autowired
+    public CharacterService(CharacterRepository characterRepository) {
+        super();
+        this.characterRepository = characterRepository;
+    }
 
     public void save(@Valid CharacterDto character) {
-        charactersRepository.put(character.getName(), character);
+        characterRepository.put(character.getName(), character);
     }
 
     public CharacterDto getByName(String name) {
-        return charactersRepository.get(name);
+        return characterRepository.get(name);
     }
 
 }

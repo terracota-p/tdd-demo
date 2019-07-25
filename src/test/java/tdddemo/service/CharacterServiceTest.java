@@ -2,27 +2,20 @@ package tdddemo.service;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import tdddemo.dto.CharacterDto;
+import tdddemo.repository.CharacterRepository;
+import tdddemo.repository.CharacterRepositoryImpl;
 
 @RunWith(SpringRunner.class)
 public class CharacterServiceTest {
 
-    private CharacterService characterService = new CharacterService();
+    private CharacterRepository characterRepository = new CharacterRepositoryImpl();
+    private CharacterService characterService = new CharacterService(characterRepository);
     
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
-
     @Test
     public void shouldRetrieveSavedCharacterByName() {
         String name = "C1";
