@@ -6,8 +6,8 @@ Feature: Characters
     Then response code should be 200
 
   Scenario Outline: 1. Save character with name
-    Given I set body to {"leadership": <leadership>,"endurance": <endurance>}
-    When I POST to /characters/<name>
+    Given I set body to {"name":<name>, "leadership":<leadership>, "endurance":<endurance>}
+    When I POST to /characters
     Then response code should be 201
 
     Examples: 
