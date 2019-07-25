@@ -10,7 +10,7 @@ A test-driven RPG Character REST service.
 
 `java -jar target/tdd-demo-0.0.1-SNAPSHOT.jar`
 
-## acceptance-tests
+## Test
 
 See [acceptance-tests/](acceptance-tests/README.md)
 
