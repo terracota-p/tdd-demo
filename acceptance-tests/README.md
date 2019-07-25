@@ -4,6 +4,10 @@ Acceptance tests for tdd-demo.
 
 ## Run
 
+```
+cd acceptance-tests/
+```
+
 First time:
 
 ```
