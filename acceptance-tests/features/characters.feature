@@ -14,3 +14,8 @@ Feature: Characters
       | <name> | <leadership> | <endurance> |
       | C1     |            3 |           2 |
       | C2     |            1 |           4 |
+
+  Scenario: 1.2. Error saving character - No name provided
+    Given I set body to {"leadership":3, "endurance":2}
+    When I POST to /characters
+    Then response code should be 400
