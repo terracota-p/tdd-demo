@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import lombok.extern.slf4j.Slf4j;
 import tdddemo.dto.CharacterDto;
@@ -15,7 +16,7 @@ import tdddemo.dto.CharacterDto;
 public class CharacterController {
 
     @PostMapping("/characters")
-    public ResponseEntity<CharacterDto> saveCharacter(@Valid CharacterDto character) {
+    public ResponseEntity<CharacterDto> saveCharacter(@Valid @RequestBody CharacterDto character) {
         log.info("saveCharacter {}", character);
         return ResponseEntity.status(HttpStatus.CREATED).body(character);
     }

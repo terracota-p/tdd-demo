@@ -7,6 +7,7 @@ Feature: Characters
 
   Scenario Outline: 1. Save character with name
     Given I set body to {"name":<name>, "leadership":<leadership>, "endurance":<endurance>}
+    And I set Content-Type header to application/json
     When I POST to /characters
     Then response code should be 201
 
@@ -17,5 +18,6 @@ Feature: Characters
 
   Scenario: 1.2. Error saving character - No name provided
     Given I set body to {"leadership":3, "endurance":2}
+    And I set Content-Type header to application/json
     When I POST to /characters
     Then response code should be 400
