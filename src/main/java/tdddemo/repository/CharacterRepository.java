@@ -6,7 +6,7 @@ import tdddemo.dto.CharacterDto;
 
 public interface CharacterRepository {
 
-    void put(String name, @Valid CharacterDto character);
+    void save(String name, @Valid CharacterDto character);
 
     CharacterDto get(String name);
 

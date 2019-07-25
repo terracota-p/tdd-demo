@@ -20,7 +20,7 @@ public class CharacterService {
     }
 
     public void save(@Valid CharacterDto character) {
-        characterRepository.put(character.getName(), character);
+        characterRepository.save(character.getName(), character);
     }
 
     public CharacterDto getByName(String name) {

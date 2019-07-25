@@ -15,7 +15,7 @@ public class CharacterRepositoryImpl implements CharacterRepository {
     private Map<String, CharacterDto> charactersByName = new HashMap<>();
 
     @Override
-    public void put(String name, @Valid CharacterDto character) {
+    public void save(String name, @Valid CharacterDto character) {
         charactersByName.put(name, character);
     }
 
