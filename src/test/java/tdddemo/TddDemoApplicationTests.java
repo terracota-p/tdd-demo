@@ -1,8 +1,8 @@
 package tdddemo;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.*;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -19,6 +19,10 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 @AutoConfigureMockMvc
 public class TddDemoApplicationTests {
 
+    private static final String CHARACTER1_NAME = "C1";
+
+    private static final String CHARACTER1_JSON = "{\"name\":\"" + CHARACTER1_NAME + "\", \"leadership\":1, \"endurance\":4}";
+    
     @Autowired
     private MockMvc mockMvc;
 
@@ -27,7 +31,7 @@ public class TddDemoApplicationTests {
         // Given I set body to {"name":"C1", "leadership":1, "endurance":4}
         // When I POST to /characters
         MockHttpServletRequestBuilder request = post("http://localhost/characters").contentType(MediaType.APPLICATION_JSON)
-                .content("{\"name\":\"C1\", \"leadership\":1, \"endurance\":4}");
+                .content(CHARACTER1_JSON);
 
         // Then response code should be 201
         mockMvc.perform(request).andDo(print()).andExpect(status().isCreated());
@@ -45,8 +49,18 @@ public class TddDemoApplicationTests {
     }
 
     @Test
-    public void shouldRetrieveSavedCharacterByName() {
-        // TODO implement
+    public void shouldRetrieveSavedCharacterByName() throws Exception {
+        // Given I saved character
+        shouldSaveCharacterWithName();
+        
+        // When I GET /characters/C1
+        MockHttpServletRequestBuilder request = get("http://localhost/characters/{name}", CHARACTER1_NAME);
+        
+        // Then response code should be 200
+        mockMvc.perform(request).andDo(print())
+            .andExpect(status().isOk())
+        // And response body path $ should be {"name":"<name>", "leadership":<leadership>, "endurance":<endurance>}
+            .andExpect(content().json(CHARACTER1_JSON));
     }
 
 }

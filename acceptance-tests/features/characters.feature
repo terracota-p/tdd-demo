@@ -23,15 +23,16 @@ Feature: Characters
     Then response code should be 400
 
   Scenario Outline: 2. Retrieve saved character by name
-    Given I set body to {"name":<name>, "leadership":<leadership>, "endurance":<endurance>}
+    Given I set body to {"name":"<name>", "leadership":<leadership>, "endurance":<endurance>}
     And I set Content-Type header to application/json
     And I POST to /characters
     When I GET /characters/<name>
     Then response code should be 200
-    And response body path $ should be {"name":<name>, "leadership":<leadership>, "endurance":<endurance>}
+    And response body path $.name should be <name>
+    And response body path $.leadership should be <leadership>
+    And response body path $.endurance should be <endurance>
 
     Examples: 
       | name | leadership | endurance |
-      | "C1" |          3 |         2 |
-      | "C2" |          1 |         4 |
-
+      | C1   |          3 |         2 |
+      | C2   |          1 |         4 |
